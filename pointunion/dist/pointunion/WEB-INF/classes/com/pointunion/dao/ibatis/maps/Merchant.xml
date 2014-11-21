@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.Merchant">
+		<result property="merchantNo" column="merchant_no"/>
+		<result property="fatherMerchant" column="father_merchant"/>
+		<result property="categoryNo" column="category_no"/>
+		<result property="merchantName" column="merchant_name"/>
+		<result property="province" column="province"/>
+		<result property="city" column="city"/>
+		<result property="intro" column="intro"/>
+		<result property="comment" column="comment"/>
+		<result property="telNo" column="tel_no"/>
+		<result property="url" column="url"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+		<result property="totalCountForCounter" column="total_count_for_counter"/>
+	</resultMap>
+	
+	<resultMap id="result1" class="com.pointunion.domain.dto.Merchant">
+		<result property="merchantNo" column="merchant_no"/>
+		<result property="merchantName" column="merchant_name"/>
+		<result property="comment" column="total"/>
+	</resultMap>
+
+	<select id="getMerchantByPK" resultMap="result">
+		select
+			0 total_count_for_counter,
+			merchant_no,
+			father_merchant,
+			category_no,
+			merchant_name,
+			province,
+			city,
+			intro,
+			comment,
+			tel_no,
+			url,
+			create_time,
+			modify_time
+		from merchant where merchant_no = #value#
+	</select>
+
+	<insert id="insertMerchant" parameterClass="com.pointunion.domain.dto.Merchant">
+		insert into merchant(merchant_no,father_merchant,category_no,merchant_name,province,city,intro,comment,tel_no,url,create_time,modify_time)
+		values(#merchantNo#,#fatherMerchant#,#categoryNo#,#merchantName#,#province#,#city#,#intro#,#comment#,#telNo#,#url#,now(),now())
+	</insert>
+
+	<update id="updateMerchant" parameterClass="com.pointunion.domain.dto.Merchant">
+		update merchant set
+			father_merchant = #fatherMerchant#,
+			category_no = #categoryNo#,
+			merchant_name = #merchantName#,
+			province = #province#,
+			city = #city#,
+			intro = #intro#,
+			comment = #comment#,
+			tel_no = #telNo#,
+			url = #url#,
+			create_time = #createTime#,
+			modify_time = now()
+		where merchant_no = #merchantNo#
+	</update>
+
+	<delete id="deleteMerchant">
+		delete merchant where merchant_no = #value#
+	</delete>
+
+	<select id="getMerchantsByQC" parameterClass="com.pointunion.domain.qc.MerchantQC"  resultMap="result">
+		select
+		<dynamic>
+			<isNotNull property="countFlag">
+				count(*) total_count_for_counter,
+				null merchant_no,
+				null father_merchant,
+				null category_no,
+				null merchant_name,
+				null province,
+				null city,
+				null intro,
+				null comment,
+				null tel_no,
+				null url,
+				null create_time,
+				null modify_time				
+			</isNotNull>
+			<isNull property="countFlag">
+				0 total_count_for_counter,
+				merchant_no,
+				father_merchant,
+				category_no,
+				merchant_name,
+				province,
+				city,
+				intro,
+				null comment,
+				tel_no,
+				url,
+				create_time,
+				modify_time		
+			</isNull>
+		</dynamic>
+		from merchant 
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="merchantKey">
+				(merchant_name like '%$merchantKey$%' or intro like '%$merchantKey$%' or comment like '%$merchantKey$%')
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="merchantCtg">
+				category_no like '$merchantCtg$%'
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="province">
+				province = #province#
+			</isNotEmpty>			
+			<isNotEmpty prepend="and" property="city">
+				city = #city#
+			</isNotEmpty>			
+			<isNotNull prepend="and" property="time1">
+				<![CDATA[ create_time >= #time1# ]]>
+			</isNotNull>				
+			<isNotNull prepend="and" property="time2">
+				<![CDATA[ create_time <= #time2# ]]>
+			</isNotNull>								
+		</dynamic>
+		<dynamic>
+			<isNull property="countFlag">
+				order by 
+				<!--  1-merchantkey, 2-	merchantCtg, 3-campaignKey, 4-时间   -->
+				<isEqual property="orderBy" compareValue="1">
+					merchant_name,
+				</isEqual>
+				<isEqual property="orderBy" compareValue="2">
+					category_no,
+				</isEqual>
+				<isEqual property="orderBy" compareValue="3">
+					create_time,
+				</isEqual>
+				<isEqual property="orderBy" compareValue="4">
+					province,city,
+				</isEqual>
+				priority,create_time,category_no,merchant_name,province,city 
+				limit
+				<isNotNull property="startRow">
+					#startRow#,
+				</isNotNull>
+				<isNull property="startRow">
+					0,
+				</isNull>
+				<isNotNull property="pageSize">
+					#pageSize#
+				</isNotNull>				
+				<isNull property="pageSize">
+					20
+				</isNull>
+			</isNull>
+		</dynamic>
+	</select>
+	
+	<select id="getTopReturnMerchants" parameterClass="java.lang.Integer"  resultMap="result1">	
+		SELECT m.merchant_no, m.merchant_name, sum(p.point) total
+		FROM pile_record p,merchant_account ma,merchant m
+		where p.pile_type='I' and p.ma_no = ma.ma_no and ma.merchant_no = m.merchant_no 
+		group by m.merchant_no, m.merchant_name
+		order by total desc
+		limit 0, #size#
+	</select>
+</sqlMap>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.ChangeList">
+		<result property="changeSeq" column="change_seq"/>
+		<result property="productNo" column="product_no"/>
+		<result property="point" column="point"/>
+		<result property="count" column="count"/>		
+		<result property="name" column="name"/>
+		<result property="categoryNo" column="category_no"/>
+	</resultMap>
+	
+	<resultMap id="result1" class="com.pointunion.domain.dto.ChangeList">
+		<result property="productNo" column="product_no"/>
+		<result property="count" column="total"/>		
+		<result property="name" column="name"/>
+	</resultMap>
+
+	<select id="getChangeListByPK" resultMap="result">
+		select
+			c.change_seq,
+			c.product_no,
+			c.point,
+			c.count,
+			p.name,
+			p.category_no
+		from change_list c,product p
+		where c.change_seq = #value#
+		and c.product_no=p.product_no
+	</select>
+
+	<insert id="insertChangeList" parameterClass="com.pointunion.domain.dto.ChangeList">
+		insert into change_list(change_seq,product_no,point,count)
+		values(#changeSeq#,#productNo#,#point#,#count#)
+	</insert>
+
+	<update id="updateChangeList" parameterClass="com.pointunion.domain.dto.ChangeList">
+		update change_list set
+			product_no = #productNo#,
+			point = #point#,
+			count = #count#
+		where change_seq = #changeSeq#
+	</update>
+
+	<delete id="deleteChangeList">
+		delete change_list where change_seq = #value#
+	</delete>
+	
+	<select id="getTopChangedProducts" parameterClass="java.lang.Integer" resultMap="result1">
+		select
+		c.product_no,
+		p.name,
+		sum(c.count) total
+		from change_list c,product p
+		where c.product_no=p.product_no
+		group by c.product_no, p.name
+		order by total desc limit 0, #size#
+	</select>
+
+</sqlMap>

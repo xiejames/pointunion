@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.Card">
+		<result property="cardNo" column="card_no"/>
+		<result property="cardCategory" column="card_category"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="requestType" column="request_type"/>
+		<result property="status" column="status"/>
+		<result property="publishTime" column="publish_time"/>
+		<result property="effectTime" column="effect_time"/>
+		<result property="ineffectTime" column="ineffect_time"/>
+		<result property="ineffectReason" column="ineffect_reason"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+		
+		<result property="merchantNo" column="merchant_no"/>
+		<result property="cardName" column="card_name"/>
+		<result property="merchantName" column="merchant_name"/>
+	</resultMap>
+
+	<select id="getCardByPK" resultMap="result">
+		select
+			c.card_no,
+			c.card_category,
+			c.account_no,
+			c.request_type,
+			c.status,
+			c.publish_time,
+			c.effect_time,
+			c.ineffect_time,
+			c.ineffect_reason,
+			c.create_time,
+			c.modify_time,
+			mc.merchant_no,
+			mc.card_name,
+			m.merchant_name
+		from card c, meta_card mc, merchant m
+		where c.card_no = #value#  
+		and c.card_category = mc.card_category 
+		and mc.merchant_no = m.merchant_no	
+	</select>
+
+	<insert id="insertCard" parameterClass="com.pointunion.domain.dto.Card">
+		insert into card(card_no,card_category,account_no,request_type,status,publish_time,effect_time,ineffect_time,ineffect_reason,create_time,modify_time)
+		values(#cardNo#,#cardCategory#,#accountNo#,#requestType#,#status#,#publishTime#,#effectTime#,#ineffectTime#,#ineffectReason#,now(),now())
+	</insert>
+
+	<update id="updateCard" parameterClass="com.pointunion.domain.dto.Card">
+		update card set
+			card_category = #cardCategory#,
+			account_no = #accountNo#,
+			request_type = #requestType#,
+			status = #status#,
+			publish_time = #publishTime#,
+			effect_time = #effectTime#,
+			ineffect_time = #ineffectTime#,
+			ineffect_reason = #ineffectReason#,
+			create_time = #createTime#,
+			modify_time = now()
+		where card_no = #cardNo#
+	</update>
+
+	<delete id="deleteCard">
+		delete card where card_no = #value#
+	</delete> 
+	
+	<select id="getCardsByQC" parameterClass="com.pointunion.domain.qc.CardQC"  resultMap="result">
+		select
+			c.card_no,
+			c.card_category,
+			c.account_no,
+			c.request_type,
+			c.status,
+			c.publish_time,
+			c.effect_time,
+			c.ineffect_time,
+			c.ineffect_reason,
+			c.create_time,
+			c.modify_time,
+			mc.merchant_no,
+			mc.card_name,
+			m.merchant_name
+		from card c, meta_card mc, merchant m
+		where c.card_category = mc.card_category 
+			and mc.merchant_no = m.merchant_no		
+			<dynamic>
+				<isNotEmpty prepend="and" property="accountNo">
+					c.account_no = #accountNo#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="status">
+					c.status=#status#
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="merchantNo">
+					mc.merchant_no=#merchantNo#
+				</isNotEmpty>
+				<isNotNull prepend="and" property="publishTime1">
+					<![CDATA[ c.publish_time >= #publishTime1# ]]>
+				</isNotNull>				
+				<isNotNull prepend="and" property="publishTime2">
+					<![CDATA[ c.publish_time <= #publishTime2# ]]>
+				</isNotNull>
+				<isNotNull prepend="and" property="effectTime1">
+					<![CDATA[ c.effect_time >= #effectTime1# ]]>
+				</isNotNull>				
+				<isNotNull prepend="and" property="effectTime2">
+					<![CDATA[ c.effect_time <= #effectTime2# ]]>
+				</isNotNull>
+				<isNotNull prepend="and" property="ineffectTime1">
+					<![CDATA[ c.ineffect_time >= #ineffectTime1# ]]>
+				</isNotNull>				
+				<isNotNull prepend="and" property="ineffectTime2">
+					<![CDATA[ c.ineffect_time <= #ineffectTime2# ]]>
+				</isNotNull>															
+			</dynamic>
+		order by 
+			<dynamic>
+				<!-- 1-卡号，2-发卡时间范围，3-开卡时间范围 4-注销时间范围,5-商户号	  -->
+				<isEqual property="orderBy" compareValue="1">
+					c.card_no,
+				</isEqual>
+				<isEqual property="orderBy" compareValue="2">
+					c.publish_time,
+				</isEqual>
+				<isEqual property="orderBy" compareValue="3">
+					c.effect_time,
+				</isEqual>
+				<isEqual property="orderBy" compareValue="4">
+					c.ineffect_time,
+				</isEqual>							
+				<isEqual property="orderBy" compareValue="5">
+					mc.merchant_no,
+				</isEqual>
+			</dynamic>
+		c.account_no,c.card_no,c.status,c.publish_time,c.effect_time,c.ineffect_time,mc.merchant_no	
+		limit
+			<dynamic>
+				<isNotNull property="startRow">
+					#startRow#,
+				</isNotNull>
+				<isNull property="startRow">
+					0,
+				</isNull>
+				<isNotNull property="pageSize">
+					#pageSize#
+				</isNotNull>				
+				<isNull property="pageSize">
+					20
+				</isNull>
+			</dynamic>
+	</select>
+</sqlMap>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+  - DispatcherServlet application context for the Spring web MVC
+  - implementation of JPetStore's web tier.
+  -->
+<beans>
+
+	<!-- ========================= VIEW DEFINITIONS ========================= -->
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/webroot/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+
+	<!-- ========================= DEFINITIONS OF PUBLIC CONTROLLERS ========================= -->
+
+	<bean id="defaultHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+	
+	<bean name="appInitBean" class="com.pointunion.web.util.AppDataInitializer">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	
+	<bean name="/refreshData.do" class="com.pointunion.web.RefreshDataController"/>
+	
+	<bean name="/" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="index"/>
+	</bean>
+	<bean name="/index.shtml" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="index"/>
+	</bean>
+
+	<bean name="/signoff.do" class="com.pointunion.web.SignoffController"/>
+
+	<bean name="/signon.do" class="com.pointunion.web.SignonController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+
+	<bean name="/signonForm.do" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="SignonForm"/>
+	</bean>
+	
+	<bean name="/register.do" class="com.pointunion.web.RegisterController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	
+	<bean name="/queryProduct.shtml" class="com.pointunion.web.QueryProductController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/queryProduct.do" class="com.pointunion.web.QueryProductController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/queryMerchant.shtml" class="com.pointunion.web.QueryMerchantController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/queryMerchant.do" class="com.pointunion.web.QueryMerchantController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/queryCampaign.shtml" class="com.pointunion.web.QueryCampaignController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/queryCampaign.do" class="com.pointunion.web.QueryCampaignController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/queryAll.do" class="com.pointunion.web.QueryAllController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/addExchange.do" class="com.pointunion.web.AddExchangeController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/modifyExchange.do" class="com.pointunion.web.ModifyExchangeController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/createExchange.do" class="com.pointunion.web.CreateExchangeController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/getProductInfo.do" class="com.pointunion.web.GetProductInfoController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/getMerchantInfo.do" class="com.pointunion.web.GetMerchantInfoController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/getCampaignInfo.do" class="com.pointunion.web.GetCampaignInfoController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/modifyCustomer.do" class="com.pointunion.web.ModifyCustomerController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+
+	<bean name="/queryPoint.do" class="com.pointunion.web.QueryPointController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/queryExchange.do" class="com.pointunion.web.QueryExchangeController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/getExchange.do" class="com.pointunion.web.GetExchangeController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/registerCard.do" class="com.pointunion.web.RegisterCardController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/effectCard.do" class="com.pointunion.web.EffectCardController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/ineffectCard.do" class="com.pointunion.web.IneffectCardController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/queryCard.do" class="com.pointunion.web.QueryCardController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/forgetPassword.do" class="com.pointunion.web.ForgetPasswordController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>		
+	<bean name="/resetPassword.do" class="com.pointunion.web.ResetPasswordController">
+		<property name="pointUnion" ref="pointUnion"/>
+	</bean>
+	<bean name="/checkSumImg.do" class="com.pointunion.web.CheckSumImgController">
+	</bean>
+				
+	<bean name="/register.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="register"/>
+	</bean>
+	<bean name="/productList.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="productList"/>
+	</bean>
+	<bean name="/merchantList.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="merchantList"/>
+	</bean>
+	<bean name="/campaigntList.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="campaignList"/>
+	</bean>
+	<bean name="/image.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="image"/>
+	</bean>
+	<bean name="/createExchange.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="exchangeDetail"/>
+	</bean>
+	<bean name="/customerInfo.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="customerInfo"/>
+	</bean>
+		
+	<bean name="/accountInfo.shtml" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="accountInfo"/>
+	</bean>
+	<bean name="/pointList.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="pointList"/>
+	</bean>
+	<bean name="/exchangeList.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="exchangeList"/>
+	</bean>
+	<bean name="/exchangeInfo.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="exchangeInfo"/>
+	</bean>
+	<bean name="/registerCard.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="registerCard"/>
+	</bean>
+	<bean name="/cardList.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="cardList"/>
+	</bean>
+	<bean name="/forgetPassword.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="forgetPassword"/>
+	</bean>
+	<bean name="/resetPassword.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="resetPassword"/>
+	</bean>
+	<bean name="/help.shtml" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="help"/>
+	</bean>		
+	<bean name="/aboutUs.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="aboutUs"/>
+	</bean>	
+	<bean name="/siteMap.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="siteMap"/>
+	</bean>	
+	<bean name="/joinUs.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="joinUs"/>
+	</bean>		
+	<bean name="/protocol.screen" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="protocol"/>
+	</bean>
+	<bean name="/forumFrame.shtml" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="forumFrame"/>
+	</bean>
+</beans>

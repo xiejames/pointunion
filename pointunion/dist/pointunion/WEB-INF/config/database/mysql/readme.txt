@@ -1,0 +1,1 @@
+For more information, please see http://www.jforum.net/confluence/display/INSTALL/MySQL+SQL+Files

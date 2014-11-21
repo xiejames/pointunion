@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.Account">
+		<result property="accountNo" column="account_no"/>
+		<result property="customerNo" column="customer_no"/>
+		<result property="currentPoint" column="current_point"/>
+		<result property="pendingPoint" column="pending_point"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+	</resultMap>
+
+	<select id="getAccountByPK" resultMap="result">
+		select
+			account_no,
+			customer_no,
+			current_point,
+			pending_point,
+			create_time,
+			modify_time
+		from account where account_no = #value#
+	</select>
+
+	<insert id="insertAccount" parameterClass="com.pointunion.domain.dto.Account">
+		insert into account(account_no,customer_no,current_point,pending_point,create_time,modify_time)
+		values(#accountNo#,#customerNo#,#currentPoint#,#pendingPoint#,now(),now())
+	</insert>
+
+	<update id="updateAccount" parameterClass="com.pointunion.domain.dto.Account">
+		update account set
+			customer_no = #customerNo#,
+			current_point = #currentPoint#,
+			pending_point = #pendingPoint#,
+			create_time = #createTime#,
+			modify_time = now()
+		where account_no = #accountNo#
+	</update>
+
+	<delete id="deleteAccount">
+		delete account where account_no = #value#
+	</delete>
+	
+	<select id="getAccountByCustomerNo" resultMap="result">
+		select
+			account_no,
+			customer_no,
+			current_point,
+			pending_point,
+			create_time,
+			modify_time
+		from account where customer_no = #value#
+	</select>
+	
+
+</sqlMap>

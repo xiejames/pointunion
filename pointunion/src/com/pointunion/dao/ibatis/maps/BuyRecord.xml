@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.BuyRecord">
+		<result property="buySeq" column="buy_seq"/>
+		<result property="maNo" column="ma_no"/>
+		<result property="merchantNo" column="merchant_no"/>
+		<result property="point" column="point"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+
+	<select id="getBuyRecordByPK" resultMap="result">
+		select
+			buy_seq,
+			ma_no,
+			merchant_no,
+			point,
+			create_time
+		from buy_record where buy_seq = #value#
+	</select>
+
+	<insert id="insertBuyRecord" parameterClass="com.pointunion.domain.dto.BuyRecord">
+		insert into buy_record(ma_no,merchant_no,point,create_time)
+		values
+		(	#maNo#,#merchantNo#,#point#,
+			<isNotNull property="createTime">
+				#createTime#
+			</isNotNull>
+			<isNull property="createTime">
+				now()
+			</isNull>
+		)
+	</insert>
+
+	<update id="updateBuyRecord" parameterClass="com.pointunion.domain.dto.BuyRecord">
+		update buy_record set
+			ma_no = #maNo#,
+			merchant_no = #merchantNo#,
+			point = #point#,
+			create_time = #createTime#
+		where buy_seq = #buySeq#
+	</update>
+
+	<delete id="deleteBuyRecord">
+		delete buy_record where buy_seq = #value#
+	</delete>
+
+</sqlMap>

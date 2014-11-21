@@ -1,0 +1,809 @@
+<%@ page language="java" pageEncoding="GBK" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+
+
+<html>
+<head>
+<title>积分联盟  到处积分,一处使用</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+
+<script type="text/javascript">
+//<![CDATA[
+//首行登录
+
+function checkLogin(userName,n,str) {
+	if (n == 0 && userName.value == str){userName.value="";userName.style.cssText = "color:#000"}
+	if (n == 1){
+		if(userName.value == str){userName.value="";}
+		userName.style.cssText = "color:#000";
+	}
+	if (n == 2 && userName.value == ""){userName.value = str;userName.style.cssText = "color:#aaa"}
+}
+function loginSubmit(){
+	var userName = document.all.userid1;
+	var password = document.all.password1;
+	if(userName.value == "联盟帐号/卡号"){
+	alert("请输入联盟帐号/卡号");
+	userName.focus();
+	return false
+	}
+	if(password.value == ""){alert("请输入密码");password.focus();return false}
+	document.all.loginform.userid.value=userName.value;
+	document.all.loginform.password.value=password.value;
+	
+	document.all.loginform.submit();
+}
+
+</script>
+
+
+</head>
+<form  name="loginform" id="loginform" method="post" target='loginframe' action='<c:url value="/signon.do"/>'>
+<input id="userid" type="hidden" name="userid"  value="">
+<input name="password" type="hidden" id="password" value=''>
+
+</form>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table width="780" height="816" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01">
+	<tr>
+	  <td width="198" height="129" rowspan="3">
+			<table id="Table_16" width="198" height="129" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="13" height="67">
+						<img src="images/index_164.gif" width="13" height="67" alt=""></td>
+					<td width="6" height="67">
+						<img src="images/index_165.gif" width="6" height="67" alt=""></td>
+					<td width="14" height="67">&nbsp;</td>
+					<td width="13" height="67">&nbsp;</td>
+					<td width="144" height="129" rowspan="3"><table width="142" height="127" border="0">
+                      <tr>
+                        <td><a href='<c:url value="/index.shtml"/>'><img src="images/logo.gif" width="137" height="116" border="0" align="middle"></a></td>
+                      </tr>
+                    </table></td>
+					<td width="8" height="67">
+						<img src="images/index_6.gif" width="8" height="67" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="22">
+						<img src="images/index_164.gif" width="13" height="22" alt=""></td>
+					<td width="6" height="22">
+						<img src="images/index_165.gif" width="6" height="22" alt=""></td>
+					<td width="14" height="22">&nbsp;</td>
+					<td width="13" height="62" rowspan="2">&nbsp;</td>
+					<td width="8" height="22">
+						<img src="images/index_11.gif" width="8" height="22" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="40">
+						<img src="images/index_164.gif" width="13" height="40" alt=""></td>
+					<td width="6" height="40">
+						<img src="images/index_165.gif" width="6" height="40" alt=""></td>
+					<td width="14" height="40">&nbsp;</td>
+					<td width="8" height="40">
+						<img src="images/index_15.gif" width="8" height="40" alt=""></td>
+				</tr>
+			</table></td>
+		<td width="582" height="29">
+			<table id="Table_08" width="582" height="29" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="7" height="29" bgcolor="#FF6600">&nbsp;</td>
+					<td width="67" height="29" align="center" bgcolor="#FF6600" ><a href='<c:url value="/index.shtml"/>' class="white15">首页</a></td>
+					<td width="1" height="29" align="center">						</td>
+
+					<td width="82" height="29" align="center" bgcolor="#FF6600" ><a href="#" class="white15">积分兑换</a></td>
+					<td width="1" height="29" align="center"></td>
+					<td width="128" height="29" align="center" bgcolor="#FF6600" ><a href="#" class="white15">商户积分活动</a></td>
+					<td width="1" height="29" align="center"></td>
+					<td width="121" height="29" align="center" bgcolor="#FF6600" ><a href="#" class="white15">其它积分活动</a></td>
+					<td width="1" height="29" align="center"></td>
+					<td width="88" height="29" align="center" bgcolor="#FF6600" ><a href="#" class="white15">联盟论坛</a></td>
+					<td width="1" align="center"></td>
+					<td width="74" align="center" bgcolor="#FF6600" ><a href="#" class="white15">帮助</a></td>
+					<td width="10" height="29" bgcolor="#FF6600">&nbsp;</td>
+				</tr>
+		  </table></td>
+	</tr>
+	<tr>
+	  <td width="582" height="62">
+
+	
+			<table id="Table_07" width="582" height="63" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td colspan="5" align="center" bgcolor="#FFFFFF" class="red24">到处积分 一处使用</td>
+					<td width="10" height="62"  bgcolor="#E6E6E6">&nbsp;</td>
+				</tr>
+				
+				<tr>
+					<td width="8" height="1">
+						<img src="images/spacer.gif" alt=""></td>
+					<td width="8" height="1">
+						<img src="images/spacer.gif" alt=""></td>
+					<td width="8" height="1">
+						<img src="images/spacer.gif" alt=""></td>
+					<td height="1" colspan="2">
+						<img src="images/spacer.gif" alt=""></td>
+					<td width="10" height="1">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+			</table>
+			
+			
+			
+	  </td>
+	</tr>
+
+	  <td width="582" height="38" id="loginline" name="loginline">
+<c:if test="${empty userSession}">
+	  
+			<table id="Table_02" width="582" height="38" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td height="38" bgcolor="#1872B9">&nbsp;</td>
+					<td width="558" height="38" align="center" class="red24" bgcolor="#1872B9"><table width="550" height="38" border="0">
+                      <tr>
+                        <td><table width="520" height="27" border="0">
+                            <tr>
+                              <td width="111"><input id="userid1" name="userid1"  value="联盟帐号/卡号" size="15" height="20" onClick="this.focus();checkLogin(this,0,'联盟帐号/卡号')" onFocus="checkLogin(this,1,'联盟帐号/卡号')" onBlur="checkLogin(this,2,'联盟帐号/卡号')" /></td>
+                              <td width="113" align="center"><input name="password1" type="password" id="password1" value="******" size="15" height="20" onClick="this.focus();checkLogin(this,0,'******')" onFocus="checkLogin(this,1,'******')" onBlur="checkLogin(this,2,'******')"></td>
+                              <td width="90"><img src="images/logon_button.gif"  width="82" height="21" border="0" usemap="#Map"></td>
+                              <td width="188" valign="middle"><a href='<c:url value="/register.screen"/>'><img src="images/register.gif" width="85" height="21" border="0"></a></td>
+                            </tr>
+                        </table></td>
+                      </tr>
+                    </table></td>
+					<td width="9" height="38" bgcolor="#1872B9">&nbsp;</td>
+				</tr>
+		</table>
+</c:if>		
+<c:if test="${!empty userSession}">
+	  
+			<table id="Table_02" width="582" height="38" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td height="38" bgcolor="#1872B9">&nbsp;</td>
+					<td width="558" height="38" align="center" class="red24" bgcolor="#1872B9"><table width="553" height="38" border="0">
+				<tr>
+					<td width="6" >&nbsp;</td>
+					<td width="119" height="22" class="white12" ><span class="white15">您好!</span><a href='./getCustomer.do?id=<c:out value="${userSession.customer.customerNo}"/>'  class="white15">
+	                <c:out value="${userSession.customer.name}"/>
+				  </a></td>
+					<td width="98" class="white12">您目前的积分是:</td>
+				  <td width="114" class="red"><c:out value="${userSession.account.current_point}"/></td>
+					<td width="97" class="white12">未到帐的积分是:</td>
+				  <td width="93"  class="red15"><c:out value="${userSession.account.pending_point}"/>&nbsp;</td>
+				  </tr>
+                    </table></td>
+					<td width="9" height="38" bgcolor="#1872B9">&nbsp;</td>
+				</tr>
+		</table>
+</c:if>		
+		</td>
+	</tr>
+
+	<tr>
+	  <td width="198" height="61">
+			<table id="Table_15" width="198" height="61" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="13" height="26">
+						<img src="images/index_39.gif" width="13" height="26" alt=""></td>
+					<td width="6" height="26">
+						<img src="images/index_40.gif" width="6" height="26" alt=""></td>
+					<td width="14" height="26">
+						<img src="images/index_166.gif" width="14" height="26" alt=""></td>
+					<td width="13" height="26">
+						<img src="images/index_42.gif" width="13" height="26" alt=""></td>
+					<td width="139" height="26" background="images/index_44.gif">&nbsp;</td>
+					<td width="5" height="26" background="images/index_44.gif">&nbsp;</td>
+					<td width="8" height="26">
+						<img src="images/index_45.gif" width="8" height="26" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="35">
+						<img src="images/index_164.gif" width="13" height="35" alt=""></td>
+					<td width="6" height="35">
+						<img src="images/index_165.gif" width="6" height="35" alt=""></td>
+					<td width="14" height="35">
+						<img src="images/index_166.gif" width="14" height="35" alt=""></td>
+					<td width="13" height="35">
+						<img src="images/index_49.gif" width="13" height="35" alt=""></td>
+					<td width="152" height="35" colspan="3"><img src="images/index_50.gif" width="152" height="35"></td>
+				</tr>
+			</table></td>
+		<td width="582" height="61">
+			<table id="Table_14" width="583" height="61" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="6" height="26" rowspan="2">
+						<img src="images/index_51.gif" width="6" height="26" alt=""></td>
+					<td width="9" height="26" rowspan="2">
+						<img src="images/index_52.gif" width="9" height="26" alt=""></td>
+					<td width="532" height="13" colspan="3">
+						<img src="images/index_53.gif" width="532" height="13" alt=""></td>
+					<td width="35" height="26" rowspan="2">
+						<img src="images/index_54.gif" width="35" height="26" alt=""></td>
+					<td width="1" height="13">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="181" height="30" rowspan="2">
+						<a href="#"><img src="images/index_55.gif" alt="" width="181" height="30" border="0"></a></td>
+					<td width="14" height="30" rowspan="2" background="images/index_56.gif">&nbsp;</td>
+					<td width="337" height="30" rowspan="2" align="right" valign="middle" background="images/index_56.gif" class="black12"><a href="#" class="red">更多。。。</a></td>
+					<td width="1" height="13">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="6" height="35" rowspan="2">
+						<img src="images/index_58.gif" width="6" height="35" alt=""></td>
+					<td width="9" height="35" rowspan="2">
+						<img src="images/index_59.gif" width="9" height="35" alt=""></td>
+					<td width="35" height="35" rowspan="2">
+						<img src="images/index_60.gif" width="35" height="35" alt=""></td>
+					<td width="1" height="17">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="532" height="18" colspan="3">
+						<img src="images/index_61.gif" width="532" height="18" alt=""></td>
+					<td width="1" height="18">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+			</table></td>
+	</tr>
+	<tr>
+	  <td width="198" height="203" rowspan="2">
+			<table id="Table_06" width="199" height="203" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="13" height="139" rowspan="5">
+						<img src="images/index_164.gif" width="13" height="139" alt=""></td>
+					<td width="6" height="139" rowspan="5">
+						<img src="images/index_165.gif" width="6" height="139" alt=""></td>
+					<td width="14" height="139" rowspan="5">
+						<img src="images/index_166.gif" width="14" height="139" alt=""></td>
+					<td width="13" height="139" rowspan="5">
+						<img src="images/index_81.gif" width="13" height="139" alt=""></td>
+					<td width="144" height="72" colspan="7">
+<table width="136" height="66" border="0" align="center">
+                      <tr>
+                        <td colspan="3"><table width="136" height="66" border="0" align="center">
+                          
+                          <tr>
+                            <td width="56" height="24" class="blackbold">积分从</td>
+                            <td width="70"><input name="from" type="text" id="from" size="10" height="20"></td>
+                          </tr>
+                          <tr>
+                            <td height="25" class="blackbold">到</td>
+                            <td><input name="to" type="text" id="to" size="10" height="20"></td>
+                          </tr>
+                        </table>						</td>
+                      </tr>
+                    </table>					
+					
+					
+					</td>
+					<td width="8" height="139" rowspan="5">&nbsp;</td>
+					<td width="1" height="72">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="59" height="54" colspan="3" rowspan="3"><table width="59" height="54" border="0">
+                      <tr>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </table></td>
+					<td width="75" height="24" colspan="3">
+						<img src="images/index_69.gif" alt="" width="75" height="24" border="0" usemap="#Map7"></td>
+					<td width="10" height="67" rowspan="4">&nbsp;</td>
+					<td width="1" height="24">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="75" height="29" colspan="3">&nbsp;</td>
+					<td width="1" height="29">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="17" height="14" rowspan="2">
+						<img src="images/index_72.gif" width="17" height="14" alt=""></td>
+					<td width="51" height="14" rowspan="2">
+						<img src="images/index_73.gif" width="51" height="14" alt=""></td>
+					<td width="7" height="14" rowspan="2">
+						<img src="images/index_74.gif" width="7" height="14" alt=""></td>
+					<td width="1" height="1">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="4" height="13">
+						<img src="images/index_75.gif" width="4" height="13" alt=""></td>
+					<td width="50" height="13">
+						<img src="images/index_76.gif" width="50" height="13" alt=""></td>
+					<td width="5" height="13">
+						<img src="images/index_77.gif" width="5" height="13" alt=""></td>
+					<td width="1" height="13">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="22" rowspan="2">
+						<img src="images/index_164.gif" width="13" height="22" alt=""></td>
+					<td width="6" height="22" rowspan="2">
+						<img src="images/index_165.gif" width="6" height="22" alt=""></td>
+					<td width="14" height="22" rowspan="2">
+						<img src="images/index_166.gif" width="14" height="22" alt=""></td>
+					<td width="13" height="22" rowspan="2">
+						<img src="images/index_81.gif" width="13" height="22" alt=""></td>
+					<td width="144" height="10" colspan="7">
+						<img src="images/index_82.gif" width="144" height="10" alt=""></td>
+					<td width="8" height="22" rowspan="2">&nbsp;</td>
+					<td width="1" height="10">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="4" height="54" rowspan="2">
+						<img src="images/index_84.gif" width="4" height="54" alt=""></td>
+					<td width="50" height="12">
+						<img src="images/index_85.gif" width="50" height="12" alt=""></td>
+					<td width="22" height="54" colspan="2" rowspan="2">&nbsp;</td>
+					<td width="51" height="12">
+						<img src="images/index_87.gif" width="51" height="12" alt=""></td>
+					<td width="17" height="54" colspan="2" rowspan="2">&nbsp;</td>
+					<td width="1" height="12">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="42">
+						<img src="images/index_164.gif" width="13" height="42" alt=""></td>
+					<td width="6" height="42">
+						<img src="images/index_165.gif" width="6" height="42" alt=""></td>
+					<td width="14" height="42">
+						<img src="images/index_166.gif" width="14" height="42" alt=""></td>
+					<td width="13" height="42">
+
+						<img src="images/index_92.gif" width="13" height="42" alt=""></td>
+					<td width="50" height="42">&nbsp;</td>
+					<td width="51" height="42">&nbsp;</td>
+					<td width="8" height="42">&nbsp;</td>
+					<td width="1" height="42">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+			</table></td>
+		<td width="582" height="139">
+			<table id="Table_05" width="583" height="139" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="6" height="139" rowspan="5">
+						<img src="images/index_96.gif" width="6" height="139" alt=""></td>
+					<td width="9" height="139" rowspan="5">
+						<img src="images/index_97.gif" width="9" height="139" alt=""></td>
+					<td width="254" height="105" colspan="5"><table width="254" height="105" border="0">
+                      <tr>
+                        <td width="120" rowspan="3" align="center"><A href="Javascript:EncashOption(1876,'B');">图片</A></td>
+                        <td width="128" class=blue14>奖品名称</td>
+                      </tr>
+                      <tr>
+                        <td class="black12">基本描述</td>
+                      </tr>
+                      <tr>
+                        <td><span class="black12">描述</span></td>
+                      </tr>
+                    </table></td>
+					<td width="24" height="139" rowspan="5">
+						<img src="images/index_99.gif" width="24" height="139" alt=""></td>
+					<td width="254" height="106" colspan="5" rowspan="2"><table width="254" height="105" border="0">
+                      <tr>
+                        <td width="120" rowspan="3" align="center"><A href="Javascript:EncashOption(1876,'B');">图片</A></td>
+                        <td width="125" class=blue14>奖品名称</td>
+                      </tr>
+                      <tr>
+                        <td class="black12">基本描述</td>
+                      </tr>
+                      <tr>
+                        <td><span class="black12">描述</span></td>
+                      </tr>
+                      
+                    </table></td>
+					<td width="35" height="139" rowspan="5">
+						<img src="images/index_101.gif" width="35" height="139" alt=""></td>
+					<td width="1" height="105">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="118" height="34" rowspan="4" align="center" valign="top" class="red15">价值:10000分</td>
+					<td width="45" height="25" rowspan="2">
+						<a href="#"><img src="images/index_103.gif" alt="" width="45" height="25" border="0"></a></td>
+					<td width="6" height="34" rowspan="4">
+						<img src="images/index_104.gif" width="6" height="34" alt=""></td>
+					<td width="77" height="25" rowspan="2">
+						<a href="#"><img src="images/index_105.gif" alt="" width="77" height="25" border="0"></a></td>
+					<td width="8" height="34" rowspan="4">
+						<img src="images/index_106.gif" width="8" height="34" alt=""></td>
+					<td width="1" height="1">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="117" height="33" rowspan="3" align="center" valign="top"><span class="red15">价值:5000分</span></td>
+					<td width="47" height="24">
+						<a href="#"><img src="images/index_108.gif" alt="" width="47" height="24" border="0"></a></td>
+					<td width="5" height="33" rowspan="3">
+						<img src="images/index_109.gif" width="5" height="33" alt=""></td>
+					<td width="77" height="25" rowspan="2">
+						<a href="#"><img src="images/index_110.gif" alt="" width="77" height="25" border="0"></a></td>
+					<td width="8" height="33" rowspan="3">
+						<img src="images/index_111.gif" width="8" height="33" alt=""></td>
+					<td width="1" height="24">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="45" height="9" rowspan="2">
+						<img src="images/index_112.gif" width="45" height="9" alt=""></td>
+					<td width="77" height="9" rowspan="2">
+						<img src="images/index_113.gif" width="77" height="9" alt=""></td>
+					<td width="47" height="9" rowspan="2">
+						<img src="images/index_114.gif" width="47" height="9" alt=""></td>
+					<td width="1" height="1">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="77" height="8">
+						<img src="images/index_115.gif" width="77" height="8" alt=""></td>
+					<td width="1" height="8">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+			</table></td>
+	</tr>
+	<tr>
+		<td width="582" height="64">
+			<table id="Table_13" width="582" height="64" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="6" height="22" rowspan="2">
+						<img src="images/index_116.gif" width="6" height="22" alt=""></td>
+
+					<td width="9" height="22" rowspan="2">
+						<img src="images/index_117.gif" width="9" height="22" alt=""></td>
+					<td width="532" height="8" colspan="5">
+						<img src="images/index_118.gif" width="532" height="8" alt=""></td>
+					<td width="35" height="22" rowspan="2">
+						<img src="images/index_119.gif" width="35" height="22" alt=""></td>
+				</tr>
+				<tr>
+					<td width="532" height="14" colspan="5"><img src="images/index_120.gif" width="532" height="14" alt=""></td>
+				</tr>
+				<tr>
+					<td width="6" height="42" rowspan="2">
+						<img src="images/index_121.gif" width="6" height="42" alt=""></td>
+					<td width="9" height="42" rowspan="2">
+						<img src="images/index_122.gif" width="9" height="42" alt=""></td>
+					<td width="28" height="17">
+						<img src="images/titilelabel2.gif" width="22" height="17" alt=""></td>
+					<td width="141" height="17">
+						<a href="#"><img src="images/index_124.gif" alt="" width="141" height="17" border="0"></a></td>
+					<td width="49" height="17">
+						<img src="images/index_125.gif" width="49" height="17" alt=""></td>
+					<td width="7" height="17" background="images/index_126.gif">&nbsp;</td>
+					<td width="307" height="17" align="right" valign="top" background="images/index_126.gif"><span class="black12"><a href="#" class="red">更多。。。</a></span></td>
+					<td width="35" height="42" rowspan="2">
+						<img src="images/index_128.gif" width="35" height="42" alt=""></td>
+				</tr>
+				<tr>
+					<td width="532" height="25" colspan="5">
+						<img src="images/index_129.gif" width="532" height="25" alt=""></td>
+				</tr>
+			</table></td>
+	</tr>
+	<tr>
+		<td width="198" height="150" rowspan="2"><table id="Table_03" width="199" height="150" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="13" height="106" rowspan="3">
+						<img src="images/index_164.gif" width="13" height="106" alt=""></td>
+					<td width="6" height="106" rowspan="3">
+						<img src="images/index_165.gif" width="6" height="106" alt=""></td>
+					<td width="14" height="106" rowspan="3"><img src="images/index_166.gif" width="14" height="106" alt=""></td>
+					<td width="13" height="21">
+						<img src="images/index_133.gif" width="13" height="21" alt=""></td>
+					<td width="144" height="21" colspan="3">
+						<img src="images/index_134.gif" width="144" height="21" alt=""></td>
+					<td width="8" height="21">
+						<img src="images/index_134.gif" width="8" height="21" alt=""></td>
+					<td width="1" height="21">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="26">
+						<img src="images/index_136.gif" width="13" height="26" alt=""></td>
+					<td width="144" height="26" colspan="3">
+						<img src="images/index_137.gif" width="144" height="26" alt=""></td>
+					<td width="8" height="26">
+						<img src="images/index_138.gif" width="8" height="26" alt=""></td>
+					<td width="1" height="26">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="103" rowspan="4">
+						<img src="images/index_139.gif" width="13" height="103" alt=""></td>
+					<td width="144" height="81" colspan="3" rowspan="2"><table width="144" height="75" border="0">
+                      
+                      <tr>
+                        <td width="12" height="39">&nbsp;</td>
+                        <td colspan="2" valign="bottom"><input name="from2" type="text" id="from2" size="15" height="20"></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td width="22">&nbsp;</td>
+                        <td width="96"><img src="images/in_query.gif" width="85" height="26" border="0" usemap="#Map8"></td>
+                      </tr>
+                    </table></td>
+					<td width="8" height="103" rowspan="4">&nbsp;</td>
+					<td width="1" height="59">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="44" rowspan="3">
+						<img src="images/index_164.gif" width="13" height="44" alt=""></td>
+					<td width="6" height="44" rowspan="3">
+						<img src="images/index_165.gif" width="6" height="44" alt=""></td>
+					<td width="14" height="44" rowspan="3">
+						<img src="images/index_144.gif" width="14" height="44" alt=""></td>
+					<td width="1" height="22">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="16" height="22" rowspan="2">
+						<img src="images/index_145.gif" width="16" height="22" alt=""></td>
+					<td width="63" height="15">
+						<img src="images/index_146.gif" width="63" height="15" alt=""></td>
+					<td width="65" height="22" rowspan="2">
+						<img src="images/index_147.gif" width="65" height="22" alt=""></td>
+					<td width="1" height="15">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td width="63" height="7">
+						<img src="images/index_148.gif" width="63" height="7" alt=""></td>
+					<td width="1" height="7">
+						<img src="images/spacer.gif" alt=""></td>
+				</tr>
+	  </table></td>
+		<td width="582" height="106">
+			<table id="Table_12" width="582" height="106" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="6" height="106">
+						<img src="images/index_149.gif" width="6" height="106" alt=""></td>
+					<td width="9" height="106">
+						<img src="images/index_150.gif" width="9" height="106" alt=""></td>
+					<td><table width="160" height="97" border="0">
+                      <tr>
+                        <td width="58" height="33" rowspan="2"><img src="images/logo/dangdang.jpg" width="58" height="33"></td>
+                        <td width="92" class="blue14_b">购物优惠:</td>
+                      </tr>
+                      <tr>
+                        <td height="16" class="black12">持卡可打<span class="red">九折</span> </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><table width="154" height="28" border="0" align="center">
+                          <tr>
+                            <td width="54"><a href="#" class="red" >立即进入</a></td>
+                            <td width="90" ><span class="blue14_b">奖励积分</span>:<span class="red">6%</span></td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                    </table></td>
+					<td width="27" height="106">
+						<img src="images/index_152.gif" width="27" height="106" alt=""></td>
+					<td width="161" height="106"><table width="160" height="96" border="0">
+                      <tr>
+                        <td width="58" height="33" rowspan="2"><img src="images/logo/zhuoyue.gif" width="73" height="42"></td>
+                        <td width="92" class="blue14_b">购物优惠:</td>
+                      </tr>
+                      <tr>
+                        <td height="16" class="black12">持卡可打<span class="red">九折</span> </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><table width="154" height="28" border="0" align="center">
+                            <tr>
+                              <td width="63"><a href="#" class="red" >立即进入</a></td>
+                              <td width="81" ><span class="blue14_b">奖励积分</span>:<span class="red">8%</span></td>
+                            </tr>
+                        </table></td>
+                      </tr>
+                    </table></td>
+					<td width="20" height="106">
+						<img src="images/index_154.gif" width="20" height="106" alt=""></td>
+					<td width="162" height="106"><table width="165" height="98" border="0">
+                      <tr>
+                        <td width="58" height="33" rowspan="2"><img src="images/logo/Joyo-sohu-co-store_heade-06.gif" width="73" height="42"></td>
+                        <td width="92" class="blue14_b">购物优惠:</td>
+                      </tr>
+                      <tr>
+                        <td height="16" class="black12">持卡可打<span class="red">九折</span> </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"><table width="154" height="28" border="0" align="center">
+                            <tr>
+                              <td width="60"><a href="#" class="red" >立即进入</a></td>
+                              <td width="84" ><span class="blue14_b">奖励积分</span>:<span class="red">5%</span></td>
+                            </tr>
+                        </table></td>
+                      </tr>
+                    </table></td>
+					<td width="35" height="106">
+						<img src="images/index_156.gif" width="35" height="106" alt=""></td>
+				</tr>
+			</table></td>
+	</tr>
+	<tr>
+		<td width="582" height="44">
+			<table id="Table_11" width="582" height="44" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="6" height="44" rowspan="2">
+						<img src="images/index_157.gif" width="6" height="44" alt=""></td>
+					<td width="9" height="44" rowspan="2">
+						<img src="images/index_158.gif" width="9" height="44" alt=""></td>
+					<td width="532" height="15" colspan="3">
+						<img src="images/index_159.gif" width="532" height="15" alt=""></td>
+					<td width="35" height="44" rowspan="2">
+						<img src="images/index_160.gif" width="35" height="44" alt=""></td>
+				</tr>
+				<tr>
+					<td width="143" height="29">
+						<a href="#"><img src="images/index_161.gif" alt="" width="143" height="29" border="0"></a></td>
+					<td width="12" height="29" background="images/index_162.gif">&nbsp;</td>
+					<td width="377" height="29" align="right" background="images/index_162.gif"><span class="black12"><a href="#" class="red">更多。。。</a></span></td>
+				</tr>
+			</table></td>
+	</tr>
+	<tr>
+	  <td width="198" height="176">
+			<table id="Table_10" width="198" height="176" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="13" height="11">
+						<img src="images/index_164.gif" width="13" height="11" alt=""></td>
+					<td width="6" height="11">
+						<img src="images/index_165.gif" width="6" height="11" alt=""></td>
+					<td width="14" height="11">
+						<img src="images/index_166.gif" width="14" height="11" alt=""></td>
+					<td width="13" height="11">
+						<img src="images/index_167.gif" width="13" height="11" alt=""></td>
+					<td width="144" height="11">
+						<img src="images/index_168.gif" width="144" height="11" alt=""></td>
+					<td width="8" height="11">
+						<img src="images/index_168.gif" width="8" height="11" alt=""></td>
+				</tr>
+				<tr>
+					<td width="13" height="165">
+						<img src="images/index_164.gif" width="13" height="165" alt=""></td>
+					<td width="6" height="165">
+						<img src="images/index_165.gif" width="6" height="165" alt=""></td>
+					<td width="14" height="165">
+						<img src="images/index_172.gif" width="14" height="165" alt=""></td>
+					<td width="13" height="165" background="images/index_173.gif">&nbsp;</td>
+					<td width="144" height="165" background="images/index_173.gif">&nbsp;</td>
+					<td width="8" height="165">&nbsp;</td>
+				</tr>
+			</table></td>
+		<td width="582" height="176">
+			<table id="Table_04" width="582" height="176" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="6" height="11">
+						<img src="images/index_176.gif" width="6" height="11" alt=""></td>
+					<td width="9" height="11">
+						<img src="images/index_177.gif" width="9" height="11" alt=""></td>
+			        <td width="252" height="176" rowspan="2"><table width="252" height="176" border="0" align="right" class="black12">
+                      <tr class="black12">
+                        <td colspan="2"><a href="#"><span class="orange">&gt;&gt;&gt;商户加入积分联盟有哪些优势？</span></a></td>
+                      </tr>
+                      <tr>
+                        <td width="8">1.</td>
+                        <td width="234" class="black12">提升加盟企业的形象，扩大客源</td>
+                      </tr>
+                      <tr>
+                        <td width="8">2.</td>
+                        <td class="black12">快速锁定您的消费群体</td>
+                      </tr>
+                      <tr>
+                        <td width="8">3.</td>
+                        <td class="black12">统一采购和配送奖品，节约成本</td>
+                      </tr>
+                      <tr>
+                        <td>4.</td>
+                        <td class="black12">提供一体化营销方案</td>
+                      </tr>
+                      <tr>
+                        <td>5.</td>
+                        <td class="black12">客户资料联盟成员共享，客户忠诚度</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td class="black12"><a href="#">更多新闻。。。</a></td>
+                      </tr>
+                    </table></td>
+			        <td width="8" height="176" rowspan="2">
+						<img src="images/index_179.gif" width="8" height="176" alt=""></td>
+					<td width="252" height="176" rowspan="2"><table width="252" height="176" border="0" align="right" class="black12">
+                      <tr class="black12">
+                        <td colspan="2"><a href="#"><span class="orange">&gt;&gt;&gt;商户加入积分联盟有哪些优势？</span></a></td>
+                      </tr>
+                      <tr>
+                        <td width="8">1.</td>
+                        <td width="234" class="black12">提升加盟企业的形象，扩大客源</td>
+                      </tr>
+                      <tr>
+                        <td width="8">2.</td>
+                        <td class="black12">快速锁定您的消费群体</td>
+                      </tr>
+                      <tr>
+                        <td width="8">3.</td>
+                        <td class="black12">统一采购和配送奖品，节约成本</td>
+                      </tr>
+                      <tr>
+                        <td>4.</td>
+                        <td class="black12">提供一体化营销方案</td>
+                      </tr>
+                      <tr>
+                        <td>5.</td>
+                        <td class="black12">客户资料联盟成员共享，客户忠诚度</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td class="black12"><a href="#">更多新闻。。。</a></td>
+                      </tr>
+                    </table></td>
+					<td width="35" height="11">
+						<img src="images/index_181.gif" width="35" height="11" alt=""></td>
+				</tr>
+				<tr>
+					<td width="6" height="165">
+						<img src="images/index_182.gif" width="6" height="165" alt=""></td>
+					<td width="9" height="165">
+						<img src="images/index_183.gif" width="9" height="165" alt=""></td>
+					<td width="35" height="165">
+						<img src="images/index_181.gif" width="35" height="165" alt=""></td>
+				</tr>
+			</table></td>
+	</tr>
+	<tr>
+		<td width="780" height="97" colspan="2"><table width="780" height="97" border="0" cellpadding="0" cellspacing="0" bgcolor="#E6E6E6" id="Table_09">
+          
+          <tr>
+            <td height="23" colspan="6" bgcolor="#3993D9">&nbsp;</td>
+            <td width="7" height="23" bgcolor="#3993D9">&nbsp;</td>
+            <td width="9" height="23" bgcolor="#3993D9">&nbsp;</td>
+            <td height="23" colspan="5" bgcolor="#3993D9"><table width="529" border="0">
+              <tr>
+                <td width="75" align="center" ><a href="#" class="white12">关于我们</a></td>
+                <td width="7" align="center" class="white12">|</td>
+                <td width="69" align="center"><a href="#"  class="white12">申请加盟</a></td>
+                <td width="8" align="center" class="white12">|</td>
+                <td width="83" align="center" ><a href="#" class="white12">联系我们</a></td>
+                <td width="8" align="center" class="white12">|</td>
+                <td width="105" align="center" ><a href="#" class="white12">站点地图</a></td>
+                <td width="9" align="center" class="white12">|</td>
+                <td width="68" align="center" ><a href="#" class="white12">帮助中心</a></td>
+                <td width="55" align="center">&nbsp;</td>
+              </tr>
+            </table></td>
+            <td width="13" height="23" bgcolor="#3993D9">&nbsp;</td>
+          </tr>
+          <tr bgcolor="#3993D9">
+            <td width="12" height="15">&nbsp;</td>
+            <td width="7" height="15">&nbsp;</td>
+            <td width="13" height="15">&nbsp;</td>
+            <td width="12" height="15">&nbsp;</td>
+            <td width="142" height="15">&nbsp;</td>
+            <td width="7" height="15">&nbsp;</td>
+            <td width="7" height="15">&nbsp;</td>
+            <td width="9" height="15">&nbsp;</td>
+            <td width="161" height="15">&nbsp;</td>
+            <td width="27" height="15">&nbsp;</td>
+            <td width="160" height="15">&nbsp;</td>
+            <td width="20" height="15">&nbsp;</td>
+            <td width="191" height="15">&nbsp;</td>
+            <td width="13" height="15">&nbsp;</td>
+          </tr>
+          
+        </table></td>
+	</tr>
+</table>
+
+<map name="Map7"><area shape="rect" coords="2,3,72,21" href="#"></map>
+<map name="Map8"><area shape="rect" coords="4,2,83,23" href="#"></map>
+<map name="Map">
+<area shape="rect" coords="13,2,65,19" onClick="javascript:loginSubmit();">
+</map>
+</html>
+<iframe  name="loginframe" id="loginframe" src="" width="0" height="0" frameborder="no"  marginwidth="8" marginheight="0" scrolling="no"></iframe>

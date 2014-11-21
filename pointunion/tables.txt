@@ -1,0 +1,78 @@
+change_list
+change_seq			long
+product_no			string
+point				int
+
+merchant_account
+ma_no				string
+merchant_no			string
+spare_point			int
+pending_point			int
+create_time			timestamp
+modify_time			timestamp
+
+pile_record
+pile_seq			long
+ma_no				string
+account_no			string
+card_no				string
+point				int
+pile_type			char
+pending_time			timestamp
+pile_time			timestamp
+
+
+point_change
+change_seq			long
+account_no			string
+total_point			int
+change_time			timestamp
+address				string
+zip				string
+name				string
+tel_no				string
+mobile				string
+status				char
+create_time			timestamp
+modify_time			timestamp
+
+product
+product_no			string
+name				string
+comment				blob
+point				int
+create_time			timestamp
+modify_time			timestamp
+
+buy_record
+buy_seq				long
+ma_no				string
+merchant_no			string
+point				int
+create_time			timestamp
+
+campaign
+campaign_no			string
+merchant_no			string
+title				string
+status				char
+commont				blob
+picture				string
+create_time			timestamp
+modify_time			timestamp
+
+
+merchant
+merchant_no			string
+father_merchant			string
+category_no			string
+merchant_name			string
+create_time			timestamp
+modify_time			timestamp
+
+merchant_category
+mc_no				string
+level				char
+name				string
+comment				string
+father_category			string

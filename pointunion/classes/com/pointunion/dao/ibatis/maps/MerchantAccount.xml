@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.MerchantAccount">
+		<result property="maNo" column="ma_no"/>
+		<result property="merchantNo" column="merchant_no"/>
+		<result property="sparePoint" column="spare_point"/>
+		<result property="pendingPoint" column="pending_point"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+	</resultMap>
+
+	<select id="getMerchantAccountByPK" resultMap="result">
+		select
+			ma_no,
+			merchant_no,
+			spare_point,
+			pending_point,
+			create_time,
+			modify_time
+		from merchant_account where ma_no = #value#
+	</select>
+
+	<insert id="insertMerchantAccount" parameterClass="com.pointunion.domain.dto.MerchantAccount">
+		insert into merchant_account(ma_no,merchant_no,spare_point,pending_point,create_time,modify_time)
+		values(#maNo#,#merchantNo#,#sparePoint#,#pendingPoint#,now(),now())
+	</insert>
+
+	<update id="updateMerchantAccount" parameterClass="com.pointunion.domain.dto.MerchantAccount">
+		update merchant_account set
+			merchant_no = #merchantNo#,
+			spare_point = #sparePoint#,
+			pending_point = #pendingPoint#,
+			create_time = #createTime#,
+			modify_time = now()
+		where ma_no = #maNo#
+	</update>
+
+	<delete id="deleteMerchantAccount">
+		delete merchant_account where ma_no = #value#
+	</delete>
+
+</sqlMap>

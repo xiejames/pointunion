@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Abator for iBATIS Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/abator-config_1_0.dtd">
+
+<abatorConfiguration>
+  <abatorContext>    <!-- TODO: Add Database Connection Information -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/pointunion?useUnicode=true&amp;characterEncoding=UTF-8"
+        userId="point"
+        password="point">
+      <classPathEntry location="F:/point/pointunion/lib/mysql-connector-java-3.0.14-production-bin.jar" />
+    </jdbcConnection>
+
+    <javaModelGenerator targetPackage="test" targetProject="pointunion" />
+    <sqlMapGenerator targetPackage="test" targetProject="pointunion" />
+    <daoGenerator type="IBATIS" targetPackage="test" targetProject="pointunion" />
+
+    <table schema="account" tableName="account">
+      <columnOverride column="account_no" property="accountNo" />
+    </table>
+
+  </abatorContext>
+</abatorConfiguration>

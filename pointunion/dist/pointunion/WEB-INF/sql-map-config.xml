@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/Customer.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/ChangeList.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/PileRecord.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/PointChange.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/Product.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/BuyRecord.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/Campaign.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/MerchantAccount.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/Card.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/Account.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/MetaCard.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/Merchant.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/MerchantCategory.xml"/>
+	<sqlMap resource="com/pointunion/dao/ibatis/maps/ProductCategory.xml"/>	
+</sqlMapConfig>

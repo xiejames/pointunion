@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.MetaCard">
+		<result property="cardCategory" column="card_category"/>
+		<result property="merchantNo" column="merchant_no"/>
+		<result property="cardName" column="card_name"/>
+		<result property="merchantName" column="merchant_name"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+	</resultMap>
+
+	<select id="getMetaCardByPK" resultMap="result">
+		select
+			c.card_category,
+			c.merchant_no,
+			c.card_name,
+			c.merchant_no,
+			m.merchant_name,
+			c.create_time,
+			c.modify_time
+		from meta_card c,merchant m
+		where card_category = #value#
+		and c.merchant_no = m.merchant_no
+	</select>
+	
+	<select id="getMetaCards" resultMap="result">
+		select
+			c.card_category,
+			c.merchant_no,
+			c.card_name,
+			c.merchant_no,
+			m.merchant_name,
+			c.create_time,
+			c.modify_time
+		from meta_card c, merchant m
+		where c.merchant_no = m.merchant_no
+	</select>
+
+	<insert id="insertMetaCard" parameterClass="com.pointunion.domain.dto.MetaCard">
+		insert into meta_card(card_category,merchant_no,card_name,create_time,modify_time)
+		values(#cardCategory#,#merchantNo#,#cardName#,now(),now())
+	</insert>
+
+	<update id="updateMetaCard" parameterClass="com.pointunion.domain.dto.MetaCard">
+		update meta_card set
+			merchant_no = #merchantNo#,
+			card_name = #cardName#,
+			create_time = #createTime#,
+			modify_time = now()
+		where card_category = #cardCategory#
+	</update>
+
+	<delete id="deleteMetaCard">
+		delete meta_card where card_category = #value#
+	</delete>
+
+</sqlMap>

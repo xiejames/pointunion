@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.ProductCategory">
+		<result property="pcNo" column="pc_no"/>
+		<result property="name" column="name"/>
+		<result property="intro" column="intro"/>
+	</resultMap>
+
+	<select id="getProductCategoryByPK" resultMap="result">
+		select
+			pc_no,
+			name,
+			intro
+		from product_category where pc_no = #value#
+	</select>
+	
+	<select id="getProductCategories" resultMap="result">
+		select
+			pc_no,
+			name,
+			intro
+		from product_category
+	</select>
+
+	<insert id="insertProductCategory" parameterClass="com.pointunion.domain.dto.ProductCategory">
+		insert into product_category(pc_no,name,intro)
+		values(#pcNo#,#name#,#intro#)
+	</insert>
+
+	<update id="updateProductCategory" parameterClass="com.pointunion.domain.dto.ProductCategory">
+		update product_category set			
+			name = #name#,
+			intro = #intro#		
+		where pc_no = #pcNo#
+	</update>
+
+	<delete id="deleteProductCategory">
+		delete product_category where pc_no = #value#
+	</delete>
+
+</sqlMap>

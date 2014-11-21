@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.Product">
+		<result property="productNo" column="product_no"/>
+		<result property="name" column="name"/>
+		<result property="categoryNo" column="category_no"/>
+		<result property="intro" column="intro"/>
+		<result property="comment" column="comment"/>
+		<result property="point" column="point"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+		<result property="totalCountForCounter" column="total_count_for_counter"/>
+	</resultMap>
+
+	<select id="getProductByPK" resultMap="result">
+		select
+			0 total_count_for_counter,
+			product_no,
+			name,
+			category_no,
+			intro,
+			comment,
+			point,
+			create_time,
+			modify_time
+		from product where product_no = #value#
+	</select>
+
+	<insert id="insertProduct" parameterClass="com.pointunion.domain.dto.Product">
+		insert into product(product_no,name,category_no,intro,comment,point,create_time,modify_time)
+		values(#productNo#,#name#,#categoryNo#,#intro#,#comment#,#point#,now(),now())
+	</insert>
+
+	<update id="updateProduct" parameterClass="com.pointunion.domain.dto.Product">
+		update product set
+			name = #name#,
+			category_no = #categoryNo#,
+			intro = #intro#,
+			comment = #comment#,
+			point = #point#,
+			create_time = #createTime#,
+			modify_time = now()
+		where product_no = #productNo#
+	</update>
+
+	<delete id="deleteProduct">
+		delete product where product_no = #value#
+	</delete>	
+	
+	<select id="getProductsByQC" parameterClass="com.pointunion.domain.qc.ProductQC"  resultMap="result">
+		select
+		<dynamic>
+			<isNotNull property="countFlag">
+				count(*) total_count_for_counter,
+				null product_no,
+				null name,
+				null category_no,
+				null intro,
+				null comment,
+				null point,
+				null create_time,
+				null modify_time
+			</isNotNull>
+			<isNull property="countFlag">
+				0 total_count_for_counter,
+				product_no,
+				name,
+				category_no,
+				intro,
+				null comment,
+				point,
+				create_time,
+				modify_time
+			</isNull>
+		</dynamic>
+		from product 
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="productKey">
+				(name like '%$productKey$%' or intro like '%$productKey$%' or comment like '%$productKey$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="productCtg">
+				category_no like '$productCtg$%'
+			</isNotEmpty>
+			<isNotNull prepend="and" property="point1">
+				<![CDATA[ point >= #point1# ]]>
+			</isNotNull>				
+			<isNotNull prepend="and" property="point2">
+				<![CDATA[ point <= #point2# ]]>
+			</isNotNull>			
+			<isNotNull prepend="and" property="time1">
+				<![CDATA[ create_time >= #time1# ]]>
+			</isNotNull>				
+			<isNotNull prepend="and" property="time2">
+				<![CDATA[ create_time <= #time2# ]]>
+			</isNotNull>											
+		</dynamic>		
+		<dynamic>
+			<isNull property="countFlag">
+				order by
+				<!-- 1-productCtg, 2-	productKey, 3-point, 4-时间-->
+				<!-- isEqual property="orderBy" compareValue="1">
+					product_ctg,
+				</isEqual-->
+				<isEqual property="orderBy" compareValue="2">
+					name,
+				</isEqual>
+				<isEqual property="orderBy" compareValue="3">
+					point,
+				</isEqual>
+				<isEqual property="orderBy" compareValue="4">
+					create_time,
+				</isEqual>					
+				priority,create_time,name,point
+			    limit
+				<isNotNull property="startRow">
+					#startRow#,
+				</isNotNull>
+				<isNull property="startRow">
+					0,
+				</isNull>
+				<isNotNull property="pageSize">
+					#pageSize#
+				</isNotNull>				
+				<isNull property="pageSize">
+					20
+				</isNull>
+			</isNull>
+		</dynamic>
+	</select>
+
+</sqlMap>

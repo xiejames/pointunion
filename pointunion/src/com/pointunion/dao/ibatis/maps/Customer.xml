@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.Customer">
+		<result property="customerNo" column="customer_no"/>
+		<result property="userId" column="user_id"/>
+		<result property="password" column="password"/>
+		<result property="email" column="email"/>
+		<result property="name" column="name"/>
+		<result property="gender" column="gender"/>
+		<result property="birthday" column="birthday"/>
+		<result property="province" column="province"/>
+		<result property="city" column="city"/>
+		<result property="address" column="address"/>
+		<result property="zip" column="zip"/>
+		<result property="telNo" column="tel_no"/>
+		<result property="mobile" column="mobile"/>
+		<result property="industry" column="industry"/>
+		<result property="company" column="company"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+	</resultMap>
+
+	<select id="getCustomerByPK" resultMap="result">
+		select
+			customer_no,
+			user_id,
+			password,
+			email,
+			name,
+			gender,
+			birthday,
+			province,
+			city,
+			address,
+			zip,
+			tel_no,
+			mobile,
+			industry,
+			company,
+			create_time,
+			modify_time
+		from customer where customer_no = #value#
+	</select>
+	
+	<select id="getCustomerByIDAndPwd" parameterClass="com.pointunion.domain.dto.Customer" resultMap="result">
+		select
+			customer_no,
+			user_id,
+			password,
+			email,
+			name,
+			gender,
+			birthday,
+			province,
+			city,
+			address,
+			zip,
+			tel_no,
+			mobile,
+			industry,
+			company,
+			create_time,
+			modify_time
+		from customer where user_id = #userId# and password=password(#password#)
+	</select>
+	
+	<select id="getCustomerByID" resultMap="result">
+		select
+			customer_no,
+			user_id,
+			password,
+			email,
+			name,
+			gender,
+			birthday,
+			province,
+			city,
+			address,
+			zip,
+			tel_no,
+			mobile,
+			industry,
+			company,
+			create_time,
+			modify_time
+		from customer where user_id = #value# 
+	</select>
+	
+	<select id="getCustomerByEmail" resultMap="result">
+		select
+			customer_no,
+			user_id,
+			password,
+			email,
+			name,
+			gender,
+			birthday,
+			province,
+			city,
+			address,
+			zip,
+			tel_no,
+			mobile,
+			industry,
+			company,
+			create_time,
+			modify_time
+		from customer where email = #value# 
+	</select>
+	
+	<insert id="insertCustomer" parameterClass="com.pointunion.domain.dto.Customer">
+		insert into 
+			customer(
+				customer_no,
+				user_id,
+				password,
+				email,
+				create_time,
+				modify_time
+				)
+		values(#customerNo#,
+				#userId#,
+				password(#password#),
+				#email#,
+				now(),
+				now())
+	</insert>
+
+	<update id="updateCustomer" parameterClass="com.pointunion.domain.dto.Customer">
+		update customer set
+			user_id = #userId#,			
+			<isNotEmpty property="password">
+				password = password(#password#),
+			</isNotEmpty>
+			email = #email#,
+			name = #name#,
+			gender = #gender#,
+			birthday = #birthday#,
+			province = #province#,
+			city = #city#,
+			address = #address#,
+			zip = #zip#,
+			tel_no = #telNo#,
+			mobile = #mobile#,
+			industry = #industry#,
+			company = #company#,
+			create_time = #createTime#,
+			modify_time = now()
+		where customer_no = #customerNo#
+	</update>
+
+	<delete id="deleteCustomer">
+		delete customer where customer_no = #value#
+	</delete>
+
+</sqlMap>

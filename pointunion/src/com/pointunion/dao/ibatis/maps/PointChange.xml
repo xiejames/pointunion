@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.PointChange">
+		<result property="changeSeq" column="change_seq"/>
+		<result property="accountNo" column="account_no"/>
+		<result property="totalPoint" column="total_point"/>
+		<result property="totalCount" column="total_count"/>
+		<result property="changeTime" column="change_time"/>
+		<result property="address" column="address"/>
+		<result property="zip" column="zip"/>
+		<result property="name" column="name"/>
+		<result property="telNo" column="tel_no"/>
+		<result property="mobile" column="mobile"/>
+		<result property="email" column="email"/>
+		<result property="status" column="status"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+	</resultMap>
+
+	<select id="getPointChangeByPK" resultMap="result">
+		select
+			change_seq,
+			account_no,
+			total_point,
+			total_count,
+			change_time,
+			address,
+			zip,
+			name,
+			tel_no,
+			mobile,
+			email,
+			status,			
+			create_time,
+			modify_time
+		from point_change where change_seq = #value#
+	</select>
+
+	<insert id="insertPointChange" parameterClass="com.pointunion.domain.dto.PointChange">
+		insert into point_change(change_seq,account_no,total_point,total_count,change_time,address,zip,name,tel_no,mobile,email,status,create_time,modify_time)
+		values(#changeSeq#, #accountNo#,#totalPoint#,#totalCount#,#changeTime#,#address#,#zip#,#name#,#telNo#,#mobile#,#email#,#status#,now(),now())
+	</insert>
+
+	<update id="updatePointChange" parameterClass="com.pointunion.domain.dto.PointChange">
+		update point_change set
+			account_no = #accountNo#,
+			total_point = #totalPoint#,
+			total_count = #totalCount#
+			change_time = #changeTime#,
+			address = #address#,
+			zip = #zip#,
+			name = #name#,
+			tel_no = #telNo#,
+			mobile = #mobile#,
+			email = #email#,
+			status = #status#,
+			create_time = #createTime#,
+			modify_time = now()
+		where change_seq = #changeSeq#
+	</update>
+
+	<delete id="deletePointChange">
+		delete point_change where change_seq = #value#
+	</delete>
+
+	<select id="getPointChangesByQC" parameterClass="com.pointunion.domain.qc.PointChangeQC"  resultMap="result">
+		select
+			change_seq,
+			account_no,
+			total_point,
+			total_count,
+			change_time,
+			address,
+			zip,
+			name,
+			tel_no,
+			mobile,
+			email,
+			status,			
+			create_time,
+			modify_time
+		from point_change 		 
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="accountNo">
+				account_no = #accountNo#
+			</isNotEmpty>				
+			<isNotEmpty prepend="and" property="point1">
+				<![CDATA[ total_point >= #point1# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="point2">
+				<![CDATA[ total_point >= #point2# ]]>
+			</isNotEmpty>
+			<isNotNull prepend="and" property="time1">
+				<![CDATA[ change_time >= #time1# ]]>
+			</isNotNull>				
+			<isNotNull prepend="and" property="time2">
+				<![CDATA[ change_time <= #time2# ]]>
+			</isNotNull>								
+		</dynamic>
+		order by 
+		<dynamic>
+			<!--  排序字段, 1-accountNo, 2-积分, 3-时间   -->
+			<isEqual property="orderBy" compareValue="1">
+				account_no,
+			</isEqual>
+			<isEqual property="orderBy" compareValue="2">
+				total_point,
+			</isEqual>
+			<isEqual property="orderBy" compareValue="3">
+				change_time,
+			</isEqual>				
+		</dynamic>
+		account_no,create_time,change_time,total_point
+		limit
+		<dynamic>
+			<isNotNull property="startRow">
+				#startRow#,
+			</isNotNull>
+			<isNull property="startRow">
+				0,
+			</isNull>
+			<isNotNull property="pageSize">
+				#pageSize#
+			</isNotNull>				
+			<isNull property="pageSize">
+				20
+			</isNull>
+		</dynamic>
+	</select>
+
+</sqlMap>

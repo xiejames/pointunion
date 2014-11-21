@@ -1,0 +1,35 @@
+<%@ page language="java" pageEncoding="GBK" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<html>
+<head>
+<title>积分联盟  到处积分,一处使用</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+<script type="text/javascript" src="/js/user.js"></script>
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table width="780" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td  rowspan="3" background="images/left_border.gif" width="10" ></td>
+    <td width="198" height="129" rowspan="3" align="center" valign="middle"> 
+      <%@ include file="logoBar.jsp" %>
+    </td>
+    <td height="29"> 
+      <%@ include file="quickHeader.jsp" %>
+    </td>
+    <td rowspan="3" background="images/right_border.gif" width="10"></td>
+  </tr>
+  <tr> 
+    <td height="64"> 
+      <%@ include file="marqueeBar.jsp" %>
+    </td>
+  </tr>
+  <tr> 
+    <td height="39" id="loginline" name="loginline"> 
+      <%@ include file="loginBar.jsp" %>
+    </td>
+  </tr>
+</table>

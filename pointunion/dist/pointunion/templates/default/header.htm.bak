@@ -1,0 +1,117 @@
+<#setting number_format = "#"/>
+<#setting datetime_format = dateTimeFormat/>
+<#assign logged = logged?default(false)/>
+<#assign language = language?default("en_US")/>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=${encoding}" />
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="-1"/>
+<style type="text/css">@import url( ${contextPath}/templates/${templateName}/styles/style_main.css?${startupTime} );</style>
+<style type="text/css">@import url( ${contextPath}/templates/${templateName}/styles/style.css?${startupTime} );</style>
+<style type="text/css">@import url(${contextPath}/templates/${templateName}/styles/${language}.css?${startupTime});</style>
+<title>${pageTitle?default("JForum")?html}</title>
+</head>
+<body class="${language}">
+
+<!--
+Original theme from phpBB (http://www.phpbb.com) subSilver
+Created by subBlue design
+http://www.subBlue.com
+
+Modifications by JForum Team
+-->
+
+
+	<tr>
+		<td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td  rowspan="3" background="images/left_border.gif" width="10" ></td>
+            <td width="198" height="129" rowspan="3" align="center" valign="middle"><table width="95%" height="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td align="center" valign="middle">
+	   <a href='${homepageLink}'><img src="${contextPath}/templates/${templateName}/images/logo.gif" width="137" height="116" border="0" align="middle" /></a> 
+    </td>
+  </tr>
+</table>
+            </td>
+            <td height="29"><table width="100%" height="29" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="5" height="30" bgcolor="#FF6600"></td>
+    <td width="14%" height="30" align="center" bgcolor="#FF6600" ><a href='${homepageLink}' class="white15">首页</a></td>
+    <td width="1" height="30" align="center"> </td>
+    <td width="14%" height="30" align="center" bgcolor="#FF6600" ><a href='${homepageLink}/queryProduct.do' class="white15">积分兑换</a></td>
+    <td width="1" height="30" align="center"></td>
+    <td width="14%" height="30" align="center" bgcolor="#FF6600" ><a href='${homepageLink}/queryCampaign.do' class="white15">会员活动</a></td>
+    <td width="1" height="30" align="center"></td>
+    <td width="14%" height="30" align="center" bgcolor="#FF6600" ><a href='${homepageLink}/queryMerchant.do' class="white15">联盟商户</a></td>
+    <td width="1" height="30" align="center"></td>
+    <td width="14%" height="30" align="center" bgcolor="#FF6600" ><a href="#" class="white15">帐户</a></td>
+    <td width="1" align="center" height="30"></td>
+    <td width="14%" height="30" align="center" bgcolor="#FF6600" ><a href="#" class="white15">联盟论坛</a></td>
+    <td width="1" align="center" height="30"></td>
+    <td width="14%" height="30"  align="center" bgcolor="#FF6600" ><a href="#" class="white15">帮助</a></td>
+    <td width="5" height="30" bgcolor="#FF6600"></td>
+  </tr>
+</table>
+            </td>
+            <td rowspan="3" background="images/right_border.gif" width="10"></td>
+          </tr>
+          <tr>
+            <td height="64"><table width="100%" height="63" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td colspan="3" align="center" bgcolor="#FFFFFF" class="red24">&nbsp;</td>
+					<td  width="165" align="center" bgcolor="#FFFFFF" class="red24"><marquee direction="right" behavior="alternate"   >
+					到处积分
+					</marquee></td>
+					<td width="165" align="center" bgcolor="#FFFFFF" class="red24"><marquee direction="left" behavior="alternate">
+					  一处使用
+					</marquee></td>
+					<td width="122" align="center" bgcolor="#FFFFFF" class="red24">&nbsp;</td>
+				</tr>
+			</table>
+            </td>
+          </tr>
+          <tr>
+            <td height="39" align="center" id="loginline" name="loginline"><table cellspacing="0" cellpadding="2" border="0">
+							<tr>
+								<td valign="top" nowrap="nowrap" align="center">&nbsp;
+									<img src="${contextPath}/templates/${templateName}/images/icon_mini_search.gif" alt="[Search]"/>
+									<span class="mainmenu"><a id="search" class="mainmenu" href="${JForumContext.encodeURL("/search/filters")}"><b>${I18n.getMessage("ForumBase.search")}</b></a> &nbsp;
+									
+									<img src="${contextPath}/templates/${templateName}/images/icon_mini_recentTopics.gif" alt="[Recent Topics]" />
+									<a id="latest" class="mainmenu" href="${JForumContext.encodeURL("/recentTopics/list")}">${I18n.getMessage("ForumBase.recentTopics")}</a> &nbsp;
+									<img src="${contextPath}/templates/${templateName}/images/icon_mini_members.gif" alt="[Members]" />&nbsp;
+									<a id="latest2" class="mainmenu" href="${JForumContext.encodeURL("/user/list")}">${I18n.getMessage("ForumBase.usersList")}</a> &nbsp;
+									<span class="mainmenu"> <img src="${contextPath}/templates/${templateName}/images/icon_mini_groups.gif" alt="[Groups]" />&nbsp;<a id="backtosite" class="mainmenu" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumBase.backToSite")}</a>&nbsp;
+
+									<#if logged>
+										<br/>
+										<a id="myprofile" class="mainmenu" href="${JForumContext.encodeURL("/user/edit/${session.userId}")}"><img src="${contextPath}/templates/${templateName}/images/icon_mini_profile.gif" border="0" alt="[Profile]" /> ${I18n.getMessage("ForumBase.profile")}</a>&nbsp; 
+										<#if bookmarksEnabled>
+											<a class="mainmenu" href="${JForumContext.encodeURL("/bookmarks/list/${session.userId}")}"><img src="${contextPath}/templates/${templateName}/images/icon_minipost.gif" alt="[Post]" />${I18n.getMessage("Bookmarks.myBag")}</a>&nbsp;
+										</#if>
+										<a id="privatemessages" class="mainmenu" href="${JForumContext.encodeURL("/pm/inbox")}"><img src="${contextPath}/templates/${templateName}/images/icon_mini_message.gif" border="0" alt="[Message]" />
+											<#if (session.privateMessages > 0)>
+												${I18n.getMessage("ForumBase.newPm")}: (${session.privateMessages})
+											<#else>
+												${I18n.getMessage("ForumBase.privateMessages")}
+											</#if>
+										</a>&nbsp;
+									</span>
+
+										<#if !sso>
+											<a id="logout" class="mainmenu" href="${JForumContext.encodeURL("/user/logout")}"><img src="${contextPath}/templates/${templateName}/images/icon_mini_login.gif" border="0" alt="[Login]" /> ${I18n.getMessage("ForumBase.logout")} [${session.username}] </a></span>
+										</#if>
+									</#if>
+	
+									<#if !logged && !sso>
+										<br/>
+										<a id="register" class="mainmenu" href="${JForumContext.encodeURL("/user/insert")}"><img src="${contextPath}/templates/${templateName}/images/icon_mini_register.gif" border="0" alt="[Register]" /> ${I18n.getMessage("ForumBase.register")}</a>&nbsp;/&nbsp;</span>
+										<a id="login" class="mainmenu" href="${JForumContext.encodeURL("/user/login")}"><img src="${contextPath}/templates/${templateName}/images/icon_mini_login.gif" border="0" alt="[Login]" /> ${I18n.getMessage("ForumBase.login")}</a>&nbsp; </span>
+									</#if>
+								</td>
+							</tr>
+			</table></td>
+          </tr>
+        </table>

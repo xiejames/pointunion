@@ -1,0 +1,213 @@
+BODY
+{
+    MARGIN-TOP: 5pt
+}
+
+TD
+{
+	FONT-SIZE: 12px;
+	color: #000000;
+}
+
+TABLE {
+	border-collapse:collapse;
+} 
+
+A
+{
+	huerreson:expression(onmouseover=window.status='');
+	 
+    COLOR: #111177
+}
+A:link
+{
+    COLOR: #111177
+}
+A:active
+{
+    COLOR: #cc6600
+}
+A:visited
+{
+    COLOR: #0066cc
+}
+A:hover
+{
+    COLOR: #ff6600;
+    TEXT-DECORATION: none
+}
+
+.red15
+{
+	FONT-SIZE: 15px;
+	COLOR: #ff0000;
+	font-weight: bold;
+}
+.boldred12
+{
+	FONT-SIZE: 12px;
+	COLOR: #ff0000;
+	font-weight: bold;
+}.red12
+{
+	FONT-SIZE: 12px;
+	COLOR: #ff0000;
+}
+a.red {
+	color: #CE0000;
+	text-decoration: none;
+}
+a.red:link {
+	color: #CE0000;
+	text-decoration: none;
+}
+a.red:visited {
+	color: #CE0000;
+	text-decoration: none;
+}
+a.red:hover {
+	color: #CE0000;
+	text-decoration:underline;
+}
+a.white12 {
+	color: #ffffff;
+	text-decoration: none;
+}
+a.white12:link {
+	color: #ffffff;
+	text-decoration: none;
+}
+a.white12:visited {
+	color: #ffffff;
+	text-decoration: none;
+}
+a.white12:hover {
+	color: #ffffff;
+	text-decoration:underline;
+}
+a.white15 {
+	font-size: 15px;
+	font-family: "黑体";
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.white15:link {
+	font-size: 15px;
+	font-family: "黑体";
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.white15:visited {
+	font-size: 15px;
+	font-family: "黑体";
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a.white15:hover {
+	font-size: 15px;
+	font-family: "黑体";
+	color: #FFFFFF;
+	text-decoration:underline;
+}
+
+.yellow12 {
+	color: #FFFF00;
+	font-weight: bold;
+	text-decoration: blink;
+	font-size: 12px;
+}
+a.yellow12 {
+	color: #FFFF00;
+	font-weight: bold;
+	text-decoration: blink;
+	font-size: 12px;
+}
+a.yellow12:link {
+	color: #FFFF00;
+	font-weight: bold;
+	text-decoration: blink;
+	font-size: 12px;
+}
+a.yellow12:visited {
+	color: #FFFF00;
+	font-weight: bold;
+	text-decoration: blink;
+	font-size: 12px;
+}
+a.yellow12:hover {
+	color: #FFFF00;
+	font-weight: bold;
+	text-decoration: blink;
+	font-size: 12px;
+}
+a.orange {
+	color: #FF6600;
+	text-decoration: none;
+}
+a.orange:link {
+	color: #FF6600;
+	text-decoration: none;
+}
+a.orange:visited {
+	color: #FF6600;
+	text-decoration: none;
+}
+a.orange:hover {
+	color: #FF6600;
+	text-decoration:underline;
+}
+
+
+.blackbold
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 12px;
+    COLOR: #000000
+}
+
+.black12
+{
+    FONT-SIZE: 12px;
+    COLOR: #000000;
+    TEXT-DECORATION: none
+}
+
+.white12
+{
+	FONT-SIZE: 12px;
+	COLOR: #ffffff;
+	font-family: "宋体";
+}
+
+.white15 {
+	font-size: 15px;
+	font-family: "黑体";
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.red
+{
+    FONT-SIZE: 12px;
+    COLOR: #ff0000
+}
+.blue14 {
+	color: #1F86DE;
+	font-size: 12px;
+	font-weight: bold;
+}
+.orange {
+	color: #FF6600;
+	font-weight: bold;
+	TEXT-DECORATION: none
+}
+.red24 {
+	font-family: "隶书";
+	font-size: 24px;
+	color: #FF0000;
+	font-weight: bold;
+}
+
+.STYLE1 {
+	font-family: "宋体";
+	font-size: 12px;
+}

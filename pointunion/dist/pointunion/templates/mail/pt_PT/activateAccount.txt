@@ -1,0 +1,8 @@
+Olá ${user.username},
+
+Recebeu este e-mail porque registou-se no ${forumName}.
+Por favor, use o link abaixo para finalizar o seu registo:
+
+${url}
+
+O seu username é: ${user.username}

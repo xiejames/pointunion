@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="result" class="com.pointunion.domain.dto.MerchantCategory">
+		<result property="mcNo" column="mc_no"/>
+		<result property="name" column="name"/>
+		<result property="intro" column="intro"/>
+	</resultMap>
+
+	<select id="getMerchantCategoryByPK" resultMap="result">
+		select
+			mc_no,
+			name,
+			intro
+		from merchant_category where mc_no = #value#
+	</select>
+	
+	<select id="getMerchantCategories" resultMap="result">
+		select
+			mc_no,
+			name,
+			intro
+		from merchant_category
+	</select>
+
+	<insert id="insertMerchantCategory" parameterClass="com.pointunion.domain.dto.MerchantCategory">
+		insert into merchant_category(mc_no,name,intro)
+		values(#mcNo#,#name#,#intro#)
+	</insert>
+
+	<update id="updateMerchantCategory" parameterClass="com.pointunion.domain.dto.MerchantCategory">
+		update merchant_category set			
+			name = #name#,
+			intro = #intro#		
+		where mc_no = #mcNo#
+	</update>
+
+	<delete id="deleteMerchantCategory">
+		delete merchant_category where mc_no = #value#
+	</delete>
+
+</sqlMap>
